@@ -1,0 +1,16 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+namespace MonogameIntro
+{
+    public class Enemy:BaseClass
+    {
+        public Enemy(Texture2D texture, Vector2 position):base(texture, position){
+            color = Color.Red;
+        }
+
+        public void Update(){
+            position.Y++;
+        }
+    }
+}

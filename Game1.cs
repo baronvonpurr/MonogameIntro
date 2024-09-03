@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -12,6 +13,8 @@ public class Game1 : Game
     Player player;
 
     Texture2D pixel;
+
+    Enemy enemy;
 
     public Game1()
     {
@@ -34,6 +37,7 @@ public class Game1 : Game
         pixel.SetData(new Color[]{Color.White});
 
         player = new Player(pixel);
+        enemy = new Enemy(pixel, new Vector2(400,10));
         // TODO: use this.Content to load your game content here
     }
 
@@ -44,6 +48,7 @@ public class Game1 : Game
 
         // TODO: Add your update logic here
         player.Update();
+        enemy.Update();
         base.Update(gameTime);
     }
 
@@ -53,6 +58,7 @@ public class Game1 : Game
 
         // TODO: Add your drawing code here
         _spriteBatch.Begin();
+        enemy.Draw(_spriteBatch);
         player.Draw(_spriteBatch);
         _spriteBatch.End();
 

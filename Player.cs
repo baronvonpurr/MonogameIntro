@@ -4,35 +4,43 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MonogameIntro
 {
-    public class Player
+    public class Player:BaseClass
     {
-        Vector2 position = new Vector2(400,240);
 
-        Texture2D texture;
-
-        public Player(Texture2D texture){
-            this.texture = texture;
+        public Player(Texture2D texture):base(texture, new Vector2(400,240)){
+            color = Color.Green;
         }
 
         public void Update(){
         KeyboardState kState = Keyboard.GetState();
-        if(kState.IsKeyDown(Keys.W)){
-            position.Y -= 1;
+        if(kState.IsKeyDown(Keys.LeftShift)){
+            if(kState.IsKeyDown(Keys.W)){
+                position.Y -= 4;
+            }
+            if(kState.IsKeyDown(Keys.S)){
+                position.Y += 4;
+            }
+            if(kState.IsKeyDown(Keys.A)){
+                position.X -= 4;
+            }
+            if(kState.IsKeyDown(Keys.D)){
+                position.X += 4;
+            }
         }
-        if(kState.IsKeyDown(Keys.S)){
-            position.Y += 1;
+        else{
+            if(kState.IsKeyDown(Keys.W)){
+                position.Y -= 2;
+            }
+            if(kState.IsKeyDown(Keys.S)){
+                position.Y += 2;
+            }
+            if(kState.IsKeyDown(Keys.A)){
+                position.X -= 2;
+            }
+            if(kState.IsKeyDown(Keys.D)){
+                position.X += 2;
+            }
         }
-        if(kState.IsKeyDown(Keys.A)){
-            position.X -= 1;
-        }
-        if(kState.IsKeyDown(Keys.D)){
-            position.X += 1;
-        }
-        }
-
-        public void Draw(SpriteBatch spriteBatch){
-            Rectangle playerRectangle = new Rectangle((int)position.X,(int)position.Y,100,100);
-            spriteBatch.Draw(texture, playerRectangle, Color.IndianRed);
         }
     }
 }
